@@ -20,7 +20,7 @@ headers = {
 url = 'https://dictionary.cambridge.org/zht/%E8%A9%9E%E5%85%B8/%E8%8B%B1%E8%AA%9E-%E6%BC%A2%E8%AA%9E-%E7%B9%81%E9%AB%94/{}'
 
 with open(args.input_path, 'r') as f:
-    vocabs = [vocab.strip() for vocab in f.read().splitlines()]
+    vocabs = [vocab.strip().lower() for vocab in f.read().splitlines()]
 
 existed_vocab_info = {}
 if os.path.exists(output_path):
@@ -60,12 +60,12 @@ for vocab in vocabs:
                 pos = '{} {}'.format(entry.select(
                     '.pos')[0].text, entry.select('.gram')[0].text)
             pron = entry.select('.us')[0].select('.pron')[0].text
-            
+
             entry_info = {}
             entry_info['pos'] = pos
             entry_info['pron'] = pron
             entry_info['blocks'] = []
-            
+
             for block in entry.select('.def-block'):
                 block_info = {}
                 block_info['def'] = block.select('.def')[0].text
