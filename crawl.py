@@ -51,7 +51,6 @@ for vocab in vocabs:
         # begin crawling
         entries = []
         for entry in soup.select('.entry-body__el'):
-            entry_info = {}
             if len(entry.select('.pos')) == 0:
                 continue
             if len(entry.select('.gram')) == 0:
@@ -59,15 +58,16 @@ for vocab in vocabs:
             else:
                 pos = '{} {}'.format(entry.select(
                     '.pos')[0].text, entry.select('.gram')[0].text)
-            entry_info['pos'] = pos
-
-            entry_info['pron'] = entry.select('.us')[0].select('.pron')[0].text
             for block in entry.select('.def-block'):
+                entry_info = {}
+                entry_info['pos'] = pos
+                entry_info['pron'] = entry.select(
+                    '.us')[0].select('.pron')[0].text
                 entry_info['def'] = entry.select('.def')[0].text
                 entry_info['trans'] = entry.select('.trans')[0].text
                 for example in block.select('.examp'):
                     entry_info['examp'] = example.text
-            entries.append(entry_info)
+                entries.append(entry_info)
 
         if len(entries) == 0:
             raise Exception('Entry of "{}" is empty.'.format(vocab))
