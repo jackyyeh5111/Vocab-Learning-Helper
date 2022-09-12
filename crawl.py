@@ -22,6 +22,7 @@ url = 'https://dictionary.cambridge.org/zht/%E8%A9%9E%E5%85%B8/%E8%8B%B1%E8%AA%9
 with open(args.input_path, 'r') as f:
     vocabs = [vocab.strip() for vocab in f.read().splitlines()]
 
+existed_vocab_info = {}
 if os.path.exists(output_path):
     with open(output_path, 'r') as f:
         existed_vocab_info = json.load(f)
@@ -58,23 +59,29 @@ for vocab in vocabs:
             else:
                 pos = '{} {}'.format(entry.select(
                     '.pos')[0].text, entry.select('.gram')[0].text)
+            pron = entry.select('.us')[0].select('.pron')[0].text
+            
+            entry_info = {}
+            entry_info['pos'] = pos
+            entry_info['pron'] = pron
+            entry_info['blocks'] = []
+            
             for block in entry.select('.def-block'):
-                entry_info = {}
-                entry_info['pos'] = pos
-                entry_info['pron'] = entry.select(
-                    '.us')[0].select('.pron')[0].text
-                entry_info['def'] = entry.select('.def')[0].text
-                entry_info['trans'] = entry.select('.trans')[0].text
+                block_info = {}
+                block_info['def'] = block.select('.def')[0].text
+                block_info['trans'] = block.select('.trans')[0].text
+                block_info['examples'] = []
                 for example in block.select('.examp'):
-                    entry_info['examp'] = example.text
-                entries.append(entry_info)
+                    block_info['examples'].append(example.text)
+                entry_info['blocks'].append(block_info)
+            entries.append(entry_info)
 
         if len(entries) == 0:
             raise Exception('Entry of "{}" is empty.'.format(vocab))
 
         vocab_info[vocab] = entries
         print('[Finish] crawling "{}"'.format(vocab))
-        time.sleep(0.5)
+        time.sleep(0.25)
     except Exception as e:
         print('[Fail] crawling "{}"'.format(vocab))
         print('==> ERROR Reason: {}'.format(e))
