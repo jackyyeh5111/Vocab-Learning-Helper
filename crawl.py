@@ -90,5 +90,8 @@ print('Pls add the info of failure vocabs manually.')
 # output json with Chinese charanter
 print('\n----- Output -----')
 print('Output vocab info to {}'.format(output_path))
+output_info = existed_vocab_info
+for vocab, info in vocab_info.items():
+    output_info[vocab] = info
 with open(output_path, "w", encoding="utf-8") as outfile:
-    json.dump(vocab_info, outfile, indent=2, ensure_ascii=False)
+    json.dump(output_info, outfile, indent=2, ensure_ascii=False)
