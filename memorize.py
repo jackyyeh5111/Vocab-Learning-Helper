@@ -1,3 +1,4 @@
+from curses.ascii import isdigit
 import os
 import argparse
 import json
@@ -13,33 +14,37 @@ assert os.path.exists(args.input_path)
 with open(args.input_path, 'r') as f:
     vocab_info = json.load(f)
 
-# sorting
+# sorting (TODO)
 
-while True:
-    for i, (vocab, info) in enumerate(vocab_info.items()):
-        print('{}. {}'.format(i+1, vocab))
+jump_idx = -1
+for i, (vocab, info) in enumerate(vocab_info.items()):
+    if i+1 < jump_idx:
+        continue
+    jump_idx = -1
 
-        for entry in info:
-            print('\n{} {}'.format(entry['pos'], entry['pron']))
-            print('({} definitions for this pos)'.format(
-                len(entry["blocks"])))
+    print('{}. {}'.format(i+1, vocab))
 
-            for j, block in enumerate(entry["blocks"]):
-                print('\n# definition {}'.format(j+1))
+    for entry in info:
+        print('\n##### {} {} ##### '.format(entry['pos'], entry['pron']))
+        print('({} definitions for this pos)'.format(
+            len(entry["blocks"])))
 
-                print(block['def'])
-                print(block['trans'])
+        for j, block in enumerate(entry["blocks"]):
+            print('\n[definition {}]'.format(j+1))
 
-                print('\n# examples')
-                for example in block['examples']:
-                    print('• {}'.format(example))
+            print(block['def'])
+            print(block['trans'])
 
-                print('-'*10)
-                inp = input('Next move: (m/n)')
-                if inp == 'm':
-                    break
+            print('\n# examples')
+            for example in block['examples']:
+                print('• {}'.format(example))
 
-            print('='*10)
+        print('-'*10)
+
+    print('='*10)
+    inp = input('Next move: (n/Number)')
+    if inp.isdigit():
+        jump_idx = int(inp)
 
 
 # TODO
