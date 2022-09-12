@@ -1,0 +1,88 @@
+{
+  "anomaly": [
+    {
+      "pos": "noun [ C or U ]",
+      "pron": "/əˈnɑː.mə.li/",
+      "def": "a person or thing that is different from what is usual, or not in agreement with something else and therefore not satisfactory",
+      "trans": "異常的人（或事物）；不規則；（同一種類中的）畸形",
+      "examp": " The anomaly of the social security system is that you sometimes have more money without a job.\n社會保障制度下的反常現像是，失業有時反而拿錢更多。\n"
+    }
+  ],
+  "equivocal": [
+    {
+      "pos": "adjective",
+      "pron": "/ɪˈkwɪv.ə.kəl/",
+      "def": "not clear and seeming to have two opposing meanings, or confusing and able to be understood in two different ways",
+      "trans": "含糊的；模棱兩可的；有歧義的",
+      "examp": " His words to the press were deliberately equivocal - he didn't deny the reports but neither did he confirm them.\n他對新聞界發言時故意含糊其詞——既沒有否認也沒有證實這些報道。\n"
+    }
+  ],
+  "lucid": [
+    {
+      "pos": "adjective",
+      "pron": "/ˈluː.sɪd/",
+      "def": "clearly expressed and easy to understand, or (of a person) thinking or speaking clearly",
+      "trans": "清晰的，明瞭的；（人）頭腦清醒的，說話清楚的",
+      "examp": " The drugs she's taking make her drowsy and confused, but there are times when she's quite lucid.\n她吃的藥會讓她感到頭暈、意識模糊，但有時頭腦卻很清醒。\n"
+    }
+  ],
+  "precipitate": [
+    {
+      "pos": "verb [ T ]",
+      "pron": "/prɪˈsɪp.ə.teɪt/",
+      "def": "to make something happen suddenly or sooner than expected",
+      "trans": "促成；使突如其來地發生；加速…的發生",
+      "examp": " If any organic salt is formed, it will precipitate (out) immediately.\n如果有有機鹽形成，它會立即沉澱。\n"
+    },
+    {
+      "pos": "noun [ C or U ]",
+      "pron": "/priːˈsɪp.ə.t̬ət/",
+      "def": "a solid substance that is produced from a liquid during a chemical process",
+      "trans": "沉澱物，析出物質",
+      "examp": " After filtration, the precipitate was dried at 90°C.\n過濾後沉澱物被加熱到90攝氏度進行乾燥。\n"
+    },
+    {
+      "pos": "adjective",
+      "pron": "/priːˈsɪp.ə.t̬ət/",
+      "def": "If an action is precipitate, it is done sooner or faster than expected and without enough thought or preparation.",
+      "trans": "倉促的，貿然的，輕率的",
+      "examp": " Don't be precipitate - think it through before you make a decision.\n別太倉促——做決定前再好好想想。\n"
+    }
+  ],
+  "assuage": [
+    {
+      "pos": "verb [ T ]",
+      "pron": "/əˈsweɪdʒ/",
+      "def": "to make unpleasant feelings less strong",
+      "trans": "緩和；減輕；平息",
+      "examp": " The government has tried to assuage the public's fears.\n政府努力消除公眾的恐慌。\n"
+    }
+  ],
+  "erudite": [
+    {
+      "pos": "adjective",
+      "pron": "/ˈer.jə.daɪt/",
+      "def": "having or containing a lot of knowledge that is known by very few people",
+      "trans": "博學的；有學問的；博大精深的",
+      "examp": " He's the author of an erudite book on Scottish history.\n他寫過一本博大精深的有關蘇格蘭歷史的著作。\n"
+    }
+  ],
+  "opaque": [
+    {
+      "pos": "adjective",
+      "pron": "/oʊˈpeɪk/",
+      "def": "preventing light from travelling through, and therefore not transparent or translucent",
+      "trans": "不透明的；不透光的",
+      "examp": " I find her poetry a little too opaque.\n我發現她的詩相當晦澀。\n"
+    }
+  ],
+  "prodigal": [
+    {
+      "pos": "adjective",
+      "pron": "/ˈprɑː.dɪ.ɡəl/",
+      "def": "spending large amounts of money without thinking of the future, in a way that is not wise",
+      "trans": "非常浪費的，奢侈的",
+      "examp": " There have been rumours that he has been prodigal with company funds.\n有傳聞說他一直在揮霍公司的資金。\n"
+    }
+  ]
+}
