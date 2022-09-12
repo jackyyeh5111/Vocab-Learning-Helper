@@ -36,13 +36,13 @@ def is_vocab_existed(vocab, existed_vocab_info):
         pass
     return False
 
+
 vocab_info = {}
 fail_vocabs = []
 for vocab in vocabs:
-
-    if is_vocab_existed(vocab, vocab_info):
+    if is_vocab_existed(vocab, existed_vocab_info):
         continue
-    
+
     try:
         res = requests.get(url.format(vocab), headers=headers)
         text = res.text
