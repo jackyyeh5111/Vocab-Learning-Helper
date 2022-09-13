@@ -22,7 +22,7 @@ for i, (vocab, info) in enumerate(vocab_info.items()):
         continue
     jump_idx = -1
 
-    print('{}. {}'.format(i+1, vocab))
+    print('\n\n{}. {}'.format(i+1, vocab))
 
     for entry in info:
         print('\n##### {} {} ##### '.format(entry['pos'], entry['pron']))
