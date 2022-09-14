@@ -40834,5 +40834,81 @@
         }
       ]
     }
+  ],
+  "aggressive": [
+    {
+      "pos": "adjective",
+      "pron": "/əˈɡres.ɪv/",
+      "blocks": [
+        {
+          "def": "behaving in an angry and violent way towards another person",
+          "trans": "好鬥的；富於攻擊性的；挑釁的",
+          "examples": [
+            " Men tend to be more aggressive than women.\n男性往往比女性更具有攻擊性。\n",
+            " If I criticize him, he gets aggressive and starts shouting.\n如果我批評他，他就會尋釁大吵大鬧。\n"
+          ]
+        },
+        {
+          "def": "determined to win or succeed and using forceful action to win or to achieve success",
+          "trans": "積極進取的；有衝勁的；雄心勃勃的",
+          "examples": [
+            " an aggressive election campaign\n聲勢浩大的競選活動\n",
+            " aggressive marketing tactics\n雄心勃勃的行銷策略\n",
+            " Both players won their first-round matches in aggressive style.\n兩名選手都以全力以赴、志在必得的打法贏得了第一輪比賽。\n"
+          ]
+        },
+        {
+          "def": "An aggressive disease is one that spreads quickly and has little chance of being cured.",
+          "trans": "（疾病）惡性的",
+          "examples": [
+            " The more aggressive the cancer, the further and faster it spreads.\n癌症越呈惡性，其發展就越廣越快。\n"
+          ]
+        },
+        {
+          "def": "used to describe a very strong treatment for a serious condition",
+          "trans": "（對惡性病）積極手段的",
+          "examples": [
+            " Brain cancer requires aggressive treatment such as surgery.\n腦部腫瘤需要採用積極治療手段，比如手術。\n"
+          ]
+        }
+      ]
+    }
+  ],
+  "agonistic": [
+    {
+      "pos": "adjective",
+      "pron": "/æɡ.əˈnɪs.tɪk/",
+      "blocks": [
+        {
+          "def": "relating to fighting or aggression (= spoken or physical behaviour that is threatening or involves harm to someone or something)",
+          "trans": "打鬥的；論戰的；好爭議的",
+          "examples": [
+            " He published a study of agonistic behaviour in freshwater crayfish.\n他發表了一篇有關淡水螯蝦打鬥行為的研究。\n"
+          ]
+        },
+        {
+          "def": "relating to an agonist (= a muscle that is pulled in the opposite direction by another muscle)",
+          "trans": "主動肌的，主縮肌的",
+          "examples": [
+            " agonistic muscles\n主動肌\n"
+          ]
+        }
+      ]
+    }
+  ],
+  "argumentative": [
+    {
+      "pos": "adjective",
+      "pron": "/ˌɑːrɡ.jəˈmen.t̬ə.t̬ɪv/",
+      "blocks": [
+        {
+          "def": "often arguing or wanting to argue",
+          "trans": "好爭辯的；好爭吵的",
+          "examples": [
+            " Don't be so argumentative.\n別那麼好爭辯。\n"
+          ]
+        }
+      ]
+    }
   ]
 }
