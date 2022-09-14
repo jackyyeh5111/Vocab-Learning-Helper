@@ -1,8 +1,6 @@
-from curses.ascii import isdigit
 import os
 import argparse
 import json
-from typing import List
 import requests
 import random
 import json
@@ -19,6 +17,7 @@ import plotext as plt
 from tabulate import tabulate
 from bs4 import BeautifulSoup
 
+VOCAB_LIST_DIR = "./vocab_lists"
 SYN_ANT_PATH = "./syn_ant.json"
 DICTIONARY_PATH = "./dict.json"
 
@@ -53,6 +52,16 @@ def Heading(heading):
     print("\n        {}".format(heading))
     print("\n-----------------------------------")
     print("\nPress Enter to continue or Q to quit at any time")
+
+
+def checkChoiceValidDigit(choice, start, end):
+    if not choice.isdigit():
+        print("Input has to be a digit ranging from {} to {}".format(start, end))
+        return False
+    if int(choice) < start or int(choice) > end:
+        print("Input has to be a digit ranging from {} to {}".format(start, end))
+        return False
+    return True
 
 
 def ClearOutput():
@@ -111,15 +120,45 @@ def displayVocabInfo(vocab):
     print('='*40)
 
 
+def getVocabList():
+    vocab_files = []
+    while True:
+        print('\n\nAvailable vocabulary lists ==>')
+        idx = 1
+        for file in os.listdir(VOCAB_LIST_DIR):
+            if file.endswith('txt'):
+                print("{}. {}".format(idx, file))
+                idx += 1
+                vocab_files.append(file)
+
+        choice = input(
+            '\n\nPlease choose a vocabulary list you want to learn: ')
+
+        if checkChoiceValidDigit(choice, 1, idx-1):
+            break
+
+    vocab_path = os.path.join(VOCAB_LIST_DIR,  vocab_files[int(choice)-1])
+    with open(vocab_path, 'r') as f:
+        vocab_list = [vocab.strip().lower() for vocab in f.read().splitlines()]
+
+    return vocab_list
+
+
 def interactiveLearn():
     '''
     1. Randomly choose words from the mentioned list
     2. Choose words in a serial order from the mentioned list
     '''
     ClearOutput()
+    vocab_list = getVocabList()
 
-    for i, (vocab, info) in enumerate(global_dict.items()):
-        print('\n\n{}. {}'.format(i+1, vocab))
+    input('\nEnjoy learning vocabularies! (Press any key to continue)')
+    ClearOutput()
+    for i, vocab in enumerate(vocab_list):
+        print ('\n\n')
+        print ('-'*50)
+        print('\n{}. {}\n'.format(i+1, vocab))
+        print ('-'*50)
         displayVocabInfo(vocab)
 
 
@@ -136,7 +175,6 @@ def searchInVocabulary(vocab=None):
             break
         displayVocabInfo(word_to_search)
 
-    input()
     ClearOutput()
     return
 
