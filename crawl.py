@@ -9,11 +9,11 @@ import argparse
 parser = argparse.ArgumentParser(
     description='Given an input vocab list, this script would crawl corresponding information from an online dictionary and then output a json file.')
 parser.add_argument('-i', '--input_path', type=str, required=True)
+parser.add_argument('-o', '--output_path', type=str, default="vocabs/vocabs.json")
 args = parser.parse_args()
 
 assert args.input_path.endswith('txt')
 assert os.path.exists(args.input_path)
-output_path = args.input_path.replace('txt', 'json')
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Mobile Safari/537.36'}
@@ -23,10 +23,10 @@ with open(args.input_path, 'r') as f:
     vocabs = [vocab.strip().lower() for vocab in f.read().splitlines()]
 
 existed_vocab_info = {}
-if os.path.exists(output_path):
-    with open(output_path, 'r') as f:
+if os.path.exists(args.output_path):
+    with open(args.output_path, 'r') as f:
         existed_vocab_info = json.load(f)
-
+vocab_info = existed_vocab_info
 
 def is_vocab_existed(vocab, existed_vocab_info):
     try:
@@ -37,11 +37,9 @@ def is_vocab_existed(vocab, existed_vocab_info):
         pass
     return False
 
-
-vocab_info = {}
 fail_vocabs = []
 for vocab in vocabs:
-    if is_vocab_existed(vocab, existed_vocab_info):
+    if is_vocab_existed(vocab, vocab_info):
         continue
 
     try:
@@ -81,7 +79,7 @@ for vocab in vocabs:
 
         vocab_info[vocab] = entries
         print('[Finish] crawling "{}"'.format(vocab))
-        time.sleep(0.25)
+        time.sleep(0.2)
     except Exception as e:
         print('[Fail] crawling "{}"'.format(vocab))
         print('==> ERROR Reason: {}'.format(e))
@@ -92,13 +90,13 @@ print('\n----- fail crawling vocabs -----')
 print('# of failure: {}'.format(len(fail_vocabs)))
 for vocab in fail_vocabs:
     print(vocab)
-print('Pls add the info of failure vocabs manually.')
+if len(fail_vocabs):
+    print('Pls add the info of failure vocabs manually.')
 
-# output json with Chinese charanter
+# output json with Chinese character
 print('\n----- Output -----')
-print('Output vocab info to {}'.format(output_path))
-output_info = existed_vocab_info
-for vocab, info in vocab_info.items():
-    output_info[vocab] = info
-with open(output_path, "w", encoding="utf-8") as outfile:
-    json.dump(output_info, outfile, indent=2, ensure_ascii=False)
+print('Output vocab info to {}'.format(args.output_path))
+with open(args.output_path, "w", encoding="utf-8") as outfile:
+    json.dump(vocab_info, outfile, indent=2, ensure_ascii=False)
+
+# if __name__ == '__main__':
