@@ -48,6 +48,13 @@ global_antonym_info = {}
 processSynonymAndAntonym()
 
 
+def Heading(heading):
+    print("\n-----------------------------------")
+    print("\n        {}".format(heading))
+    print("\n-----------------------------------")
+    print("\nPress Enter to continue or Q to quit at any time")
+
+
 def ClearOutput():
     MyOS = platform.system()
     if MyOS == "Windows":
@@ -69,25 +76,18 @@ def PrintMenu():
     print("------------------------------------")
 
 
-def interactiveLearn():
-    '''
-    1. Randomly choose words from the mentioned list
-    2. Choose words in a serial order from the mentioned list
-    '''
-    ClearOutput()
+def displayVocabInfo(vocab):
+    try:
+        print('synonym: {}'.format(global_synonym_info[vocab]))
+    except:
+        pass
+    try:
+        print('antonym: {}'.format(global_antonym_info[vocab]))
+    except:
+        pass
 
-    for i, (vocab, info) in enumerate(global_dict.items()):
-        print('\n\n{}. {}'.format(i+1, vocab))
-        try:
-            print('synonym: {}'.format(global_synonym_info[vocab]))
-        except:
-            pass
-        try:
-            print('antonym: {}'.format(global_antonym_info[vocab]))
-        except:
-            pass
-
-        for entry in info:
+    try:
+        for entry in global_dict[vocab]:
             print('\n##### {} {} ##### '.format(entry['pos'], entry['pron']))
             print('({} definitions for this pos)'.format(
                 len(entry["blocks"])))
@@ -104,9 +104,41 @@ def interactiveLearn():
                         print('• {}'.format(example))
                 else:
                     print('\n# No examples')
+    except:
+        print('Cannot find "{}" is the dictionary.'.format(vocab))
 
-        inp = input('Press any key to continue')
-        print('='*40)
+    inp = input('Press any key to continue')
+    print('='*40)
+
+
+def interactiveLearn():
+    '''
+    1. Randomly choose words from the mentioned list
+    2. Choose words in a serial order from the mentioned list
+    '''
+    ClearOutput()
+
+    for i, (vocab, info) in enumerate(global_dict.items()):
+        print('\n\n{}. {}'.format(i+1, vocab))
+        displayVocabInfo(vocab)
+
+
+def searchInVocabulary(vocab=None):
+    ClearOutput()
+    Heading("Search In Vocabulary")
+    while True:
+        if vocab is None:
+            word_to_search = str(
+                input("\nEnter the word to search: ")).lower()
+        else:
+            word_to_search = vocab.lower()
+        if word_to_search == 'q':
+            break
+        displayVocabInfo(word_to_search)
+
+    input()
+    ClearOutput()
+    return
 
 
 def main():
@@ -121,6 +153,9 @@ def main():
             choice = int(choice)
             if choice == 1:
                 interactiveLearn()
+            if choice == 2:
+                searchInVocabulary()
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     main()
