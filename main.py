@@ -81,6 +81,7 @@ def PrintMenu():
     print("Please enter a number: ")
     print("1. Start to learn")
     print("2. Search for a word")
+    print("3. Edit a word")
     print("10. Exit")
     print("------------------------------------")
 
@@ -114,7 +115,7 @@ def displayVocabInfo(vocab):
                 else:
                     print('\n# No examples')
     except:
-        print('Cannot find "{}" is the dictionary.'.format(vocab))
+        print('Cannot find "{}" in the dictionary.'.format(vocab))
 
     inp = input('Press any key to continue')
     print('='*40)
@@ -155,10 +156,10 @@ def interactiveLearn():
     input('\nEnjoy learning vocabularies! (Press any key to continue)')
     ClearOutput()
     for i, vocab in enumerate(vocab_list):
-        print ('\n\n')
-        print ('-'*50)
+        print('\n\n')
+        print('-'*50)
         print('\n{}. {}\n'.format(i+1, vocab))
-        print ('-'*50)
+        print('-'*50)
         displayVocabInfo(vocab)
 
 
@@ -179,6 +180,48 @@ def searchInVocabulary(vocab=None):
     return
 
 
+def editVocabulary():
+    pass
+
+
+def addVocabulary(word):
+    pos = input("Pos: ")
+    pron = input("Pronunciation: ")
+    definition = input("Definition: ")
+    trans = input("Transition: ")
+    example = input("Example: ")
+
+    block_info = {
+        "def": definition,
+        "trans": trans,
+        "examples": [example]
+    }
+    info = {
+        "pos": pos,
+        "pron": pron,
+        "blocks": block_info
+    }
+    global_dict[word] = info
+
+    with open(DICTIONARY_PATH, "w", encoding="utf-8") as outfile:
+        json.dump(global_dict, outfile, indent=2, ensure_ascii=False)
+
+
+def updateDictionary():
+    ClearOutput()
+    Heading("Add/Edit a vocabulary")
+    while True:
+        word = str(
+            input("\nEnter the word to add/edit: ")).lower()
+        if word == 'q':
+            break
+        try:
+            global_dict[word]
+            editVocabulary()
+        except:
+            addVocabulary(word)
+
+
 def main():
     ClearOutput()
     print("\nWelcome to the GRE World!")
@@ -193,6 +236,8 @@ def main():
                 interactiveLearn()
             if choice == 2:
                 searchInVocabulary()
+            if choice == 3:
+                updateDictionary()
 
 
 if __name__ == '__main__':
