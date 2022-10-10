@@ -1,19 +1,22 @@
-from genericpath import isfile
 import requests
 from bs4 import BeautifulSoup
 import json
 import time
 import os
 import argparse
+import pathlib
 
 parser = argparse.ArgumentParser(
     description='Given an input vocab list, this script would crawl corresponding information from an online dictionary and then output a json file.')
 parser.add_argument('-i', '--input_path', type=str, required=True)
-parser.add_argument('-o', '--output_path', type=str, default="vocabs/vocabs.json")
+parser.add_argument('-o', '--output_path', type=str, default="./dict.json")
 args = parser.parse_args()
 
 assert args.input_path.endswith('txt')
 assert os.path.exists(args.input_path)
+
+cur_path = pathlib.Path(__file__).parent.absolute()
+args.output_path = os.path.join(cur_path, args.output_path)
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Mobile Safari/537.36'}
@@ -57,7 +60,10 @@ for vocab in vocabs:
             else:
                 pos = '{} {}'.format(entry.select(
                     '.pos')[0].text, entry.select('.gram')[0].text)
-            pron = entry.select('.us')[0].select('.pron')[0].text
+            
+            pron = ""
+            if len(entry.select('.us')):
+                pron = entry.select('.us')[0].select('.pron')[0].text
 
             entry_info = {}
             entry_info['pos'] = pos

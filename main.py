@@ -1,3 +1,4 @@
+from curses.ascii import isdigit
 import os
 import argparse
 import json
@@ -8,7 +9,7 @@ import sys
 import os
 import platform
 import datetime
-from pathlib import Path
+import pathlib
 from pytz import timezone
 import calendar
 import time
@@ -17,10 +18,27 @@ import plotext as plt
 from tabulate import tabulate
 from bs4 import BeautifulSoup
 
-VOCAB_LIST_DIR = "./vocab_lists"
-SYN_ANT_PATH = "./syn_ant.json"
-DICTIONARY_PATH = "./dict.json"
+cur_path = pathlib.Path(__file__).parent.absolute()
 
+VOCAB_LIST_DIR = os.path.join(cur_path, "./vocab_lists")
+SYN_ANT_PATH = os.path.join(cur_path, "./db/syn_ant.json")
+CAMBRIDGE_DICTIONARY_PATH = os.path.join(cur_path, "./db/cambridge_dict.json")
+VOCABCOM_DICTIONARY_PATH = os.path.join(cur_path, "./db/vocabcom_dict.json")
+
+
+try:
+    with open(CAMBRIDGE_DICTIONARY_PATH, 'r') as f:
+        global_cambridge_dict = json.load(f)
+except Exception as e:
+    print("\n[ERROR] Fail to load {}. Reason: {}".format(CAMBRIDGE_DICTIONARY_PATH, e))
+    exit(1)
+try:
+    with open(VOCABCOM_DICTIONARY_PATH, 'r') as f:
+        global_vocabcom_dict = json.load(f)
+except Exception as e:
+    print("\n[ERROR] Fail to load {}. Reason: {}".format(VOCABCOM_DICTIONARY_PATH, e))
+    exit(1)
+    
 
 def processSynonymAndAntonym():
     with open(SYN_ANT_PATH, 'r') as f:
@@ -32,15 +50,6 @@ def processSynonymAndAntonym():
     for antonyms in syn_ant_info["antonyms"]:
         for word in antonyms:
             global_antonym_info[word] = antonyms
-
-
-try:
-    with open(DICTIONARY_PATH, 'r') as f:
-        global_dict = json.load(f)
-except:
-    print("\n[ERROR] Unable to find {} file. Please check the path again".format(
-        DICTIONARY_PATH))
-    exit(1)
 
 global_synonym_info = {}
 global_antonym_info = {}
@@ -88,23 +97,32 @@ def PrintMenu():
 
 def displayVocabInfo(vocab):
     try:
-        print('synonym: {}'.format(global_synonym_info[vocab]))
+        print('short explanation: \n\n{}'.format(global_vocabcom_dict[vocab]["short"]))
+        print('\nlong explanation: \n\n{}'.format(global_vocabcom_dict[vocab]["long"]))
+    except:
+        pass
+    try:
+        print('\nsynonym: {}'.format(global_synonym_info[vocab]))
     except:
         pass
     try:
         print('antonym: {}'.format(global_antonym_info[vocab]))
     except:
         pass
-
+    
+    inp = input('\nPress any key to continue')
+    
     try:
-        for entry in global_dict[vocab]:
+        for entry in global_cambridge_dict[vocab]:
             print('\n##### {} {} ##### '.format(entry['pos'], entry['pron']))
+            if 'note' in entry.keys():
+                print ('Note: {}\n'.format(entry['note']))
+                
             print('({} definitions for this pos)'.format(
                 len(entry["blocks"])))
 
             for j, block in enumerate(entry["blocks"]):
                 print('\n[definition {}]'.format(j+1))
-
                 print(block['def'])
                 print(block['trans'])
 
@@ -117,7 +135,7 @@ def displayVocabInfo(vocab):
     except:
         print('Cannot find "{}" in the dictionary.'.format(vocab))
 
-    inp = input('Press any key to continue')
+    inp = input('\nPress any key to continue')
     print('='*40)
 
 
@@ -152,10 +170,21 @@ def interactiveLearn():
     '''
     ClearOutput()
     vocab_list = getVocabList()
+    while True:
+        start_id = input(
+            '\nInput a vocabulary id you want to start with (input 1 to start from the beginning):')
+        if not start_id.isdigit():
+            print("\nInvalid choice! Enter a number less than or equal to {}".format(
+                (len(vocab_list))))
+            continue
+        start_id = int(start_id)
+        break
 
     input('\nEnjoy learning vocabularies! (Press any key to continue)')
     ClearOutput()
     for i, vocab in enumerate(vocab_list):
+        if i+1 < start_id:
+            continue
         print('\n\n')
         print('-'*50)
         print('\n{}. {}\n'.format(i+1, vocab))
@@ -199,12 +228,12 @@ def addVocabulary(word):
     info = {
         "pos": pos,
         "pron": pron,
-        "blocks": block_info
+        "blocks": [block_info]
     }
-    global_dict[word] = info
+    global_cambridge_dict[word] = [info]
 
     with open(DICTIONARY_PATH, "w", encoding="utf-8") as outfile:
-        json.dump(global_dict, outfile, indent=2, ensure_ascii=False)
+        json.dump(global_cambridge_dict, outfile, indent=2, ensure_ascii=False)
 
 
 def updateDictionary():
@@ -216,7 +245,7 @@ def updateDictionary():
         if word == 'q':
             break
         try:
-            global_dict[word]
+            global_cambridge_dict[word]
             editVocabulary()
         except:
             addVocabulary(word)
