@@ -219,7 +219,6 @@ admire
 knell
 animosity
 insular
-convulsion
 cyclopaedia
 inculpate
 delude
@@ -277,7 +276,6 @@ empathy
 distort
 deduct
 ancestry
-fickle
 surge
 impertinent
 calamity
@@ -502,8 +500,9 @@ quixotic
 cower
 coffer
 illusory
-hyperbole
 tangible
+hyperbole
+indulge
 cretin
 inveigle
 suborn
@@ -523,6 +522,7 @@ peculiar
 jeer
 expurgate
 nonplussed
+bewildered
 chasm
 nincompoop
 serpentine
@@ -536,21 +536,20 @@ plenitude
 intact
 aver
 oblation
-happen
 adduce
 adaptive
 equal
 synoptic
-prepare
 complacent
 gripe
 extrapolate
 meticulous
 extradite
 paroxysm
+convulsion
 tamp
+granular
 observant
-rail at
 demoralize
 abhor
 endure
@@ -580,7 +579,6 @@ jovial
 dispel
 wan
 blemish
-particulate
 denigrate
 staggering
 collude
@@ -617,7 +615,7 @@ steadfast
 affliction
 ornery
 peculate
-infelicity
+embezzle
 untoward
 affiliation
 hortatory
@@ -633,16 +631,18 @@ espy
 toady
 orison
 inveterate
+twitchy
 imbue
 apotheosis
-arcadian
 rigor
+exhaustive
 dissonance
 nausea
 rancor
 aversion
 tribute
 capricious
+fickle
 implode
 acerbity
 circumlocution
@@ -666,9 +666,7 @@ charlatan
 digest
 petulant
 acrid
-refulgence
 hedonistic
-pleasant
 incursion
 pathogenic
 fulminate
@@ -709,6 +707,7 @@ stupefy
 remedy
 haphazard
 paean
+exasperated
 consternate
 unequivocal
 temporal
@@ -724,7 +723,6 @@ brickbat
 trepidation
 harrow
 destitute
-exhaustive
 malign
 ineluctable
 gambol
@@ -801,6 +799,7 @@ resist
 obliterate
 redolent
 herbaceous
+induce
 mace
 foreordain
 embody
@@ -2523,7 +2522,6 @@ squalid
 reconnaissance
 scurvy
 predisposition
-indulge
 somnolent
 regulate
 qualm
@@ -2658,7 +2656,6 @@ conviction
 elegy
 precognitive
 transcendent
-induce
 derivative
 notice
 subordinate

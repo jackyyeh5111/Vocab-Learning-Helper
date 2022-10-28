@@ -39,6 +39,10 @@
             "surmount"
         ],
         [
+            "ennui",
+            "apathetic"
+        ],
+        [
             "abysmal",
             "abominable",
             "deplorable",
@@ -78,7 +82,8 @@
             "bounteous",
             "copious",
             "ample",
-            "abundant"
+            "abundant",
+            "plenitude"
         ],
         [
             "candid",
@@ -136,6 +141,10 @@
             "debrief"
         ],
         [
+            "persuasive",
+            "cogent"
+        ],
+        [
             "lucid",
             "perspicuous"
         ],
@@ -153,6 +162,11 @@
             "culprit"
         ],
         [
+            "bold",
+            "impudent",
+            "sassy"
+        ],
+        [
             "coddle",
             "spoil",
             "pamper",
@@ -164,7 +178,17 @@
             "assuredness",
             "poise",
             "confidence",
-            "composure"
+            "composure",
+            "equanimity"
+        ],
+        [
+            "mournful",
+            "doleful"
+        ],
+        [
+            "sullen",
+            "morose",
+            "glowering"
         ],
         [
             "exacerbate",
@@ -190,7 +214,8 @@
             "fatigue",
             "lethargic",
             "exhausted",
-            "flag"
+            "flag",
+            "wan"
         ],
         [
             "acuity",
@@ -264,10 +289,48 @@
             "attrition"
         ],
         [
+            "jeer",
+            "taunt",
+            "scoff",
+            "mock"
+        ],
+        [
+            "expurgate",
+            "censor"
+        ],
+        [
+            "bewildered",
+            "nonplussed",
+            "puzzled",
+            "confused"
+        ],
+        [
+            "replace",
+            "displace",
+            "supplant",
+            "supercede",
+            "take the place of"
+        ],
+        [
+            "bizarre",
+            "peculiar",
+            "outlandish"
+        ],
+        [
             "fawn",
             "flatter",
             "adulate",
-            "obsequious"
+            "obsequious",
+            "taudy",
+            "ingratiate"
+        ],
+        [
+            "ostentatious",
+            "gaudy"
+        ],
+        [
+            "fickle",
+            "capricious"
         ],
         [
             "accentuate",
@@ -286,7 +349,12 @@
         [
             "hoodwink",
             "delude",
-            "deceive"
+            "deceive",
+            "bilk"
+        ],
+        [
+            "charlatan",
+            "quack"
         ],
         [
             "arduous",
@@ -300,6 +368,13 @@
             "profligate",
             "squandering",
             "lavishly"
+        ],
+        [
+            "covet",
+            "desire",
+            "eager",
+            "out for",
+            "out to"
         ],
         [
             "economical",
@@ -369,7 +444,8 @@
             "timorous",
             "spineless",
             "craven",
-            "wimpy"
+            "wimpy",
+            "timid"
         ],
         [
             "lambaste",
@@ -378,7 +454,10 @@
             "animadvert",
             "censure",
             "chastise",
-            "condemn"
+            "condemn",
+            "rebuke",
+            "reprimand",
+            "castigation"
         ],
         [
             "jubilant",
@@ -387,11 +466,13 @@
         [
             "docile",
             "submssive",
-            "obedient"
+            "obedient",
+            "compliant"
         ],
         [
             "vilify",
-            "calumny"
+            "calumny",
+            "denigrate"
         ],
         [
             "disparage",

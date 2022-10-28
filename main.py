@@ -97,7 +97,13 @@ def PrintMenu():
 
 def displayVocabInfo(vocab):
     try:
-        print('short explanation: \n\n{}'.format(global_vocabcom_dict[vocab]["short"]))
+        print ('')
+        for entry in global_cambridge_dict[vocab]:
+            print('{} {}'.format(entry['pos'], entry['pron']))
+    except:
+        pass    
+    try:
+        print('\nshort explanation: \n\n{}'.format(global_vocabcom_dict[vocab]["short"]))
         print('\nlong explanation: \n\n{}'.format(global_vocabcom_dict[vocab]["long"]))
     except:
         pass
